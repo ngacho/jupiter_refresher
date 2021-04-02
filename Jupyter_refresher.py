@@ -37,15 +37,18 @@ print(percentages)
 
 
 #find those who said no to being a hobbyist
-said_no = df[df['Hobbyist'] == 'No']
+non_hobbyists = df[df['Hobbyist'] == 'No']
 #find those who said yes to being a hobbyist
-said_yes = df[df['Hobbyist'] == 'Yes']
+hobbyists = df[df['Hobbyist'] == 'Yes']
 ##print the mean of those ages
-print("Average age of non-hobbyists is " + str(said_no['Age'].mean()))
-print("Average age of hobbyists is " + str(said_yes['Age'].mean()))
+print("Average age of non-hobbyists in the world as per the survey is " + str(non_hobbyists['Age'].mean()))
+print("Average age of hobbyists in the world as per the survey is " + str(hobbyists['Age'].mean()))
 
+#find hobbyists from a specific country
+#filtered_by_country = hobbyists[df['Country'] == 'United States']
+filtered_by_country = df[(df['Hobbyist'] == 'Yes') & (df['Country'] == 'United States')]
+print("Average age of hobbyists in the US is " + str(filtered_by_country['Age'].mean()))
 
-
-
-
-
+#analyze the languages preferred by hobbyists
+lang_lists = hobbyists['LanguageWorkedWith'].str.split(';', expand=True)
+lang_lists.stack().value_counts().plot(kind='bar', figsize=(15, 7), color="#61d199")
