@@ -13,7 +13,7 @@ from pathlib import Path
 #get_ipython().run_line_magic('matplotlib', 'inline')
 
 #path to file
-file_to_open = "D:\\Project\\python_playground\\csv\\developer_survey_2020\\survey_results_public.csv"
+file_to_open = "survey_results_public.csv"
 
 df = pd.read_csv(file_to_open)
 
